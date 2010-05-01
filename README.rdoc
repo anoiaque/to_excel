@@ -1,7 +1,28 @@
 = Introduction 
-I first used the good "arydjmal/to_xls" plugin but it doesn't allow collections of multiples objects from different class and can't export
+I first used the good "arydjmal/to_xls" plugin but it doesn't allow collections of multiples objects from different classes and can't export
 associations attributes of a class.
 
-With to_excel gem you can export multiples collections of objects of different class, moreover you have the possibility of
+With to_excel gem you can export multiples collections of objects of different classes, moreover you have the possibility of
 exporting associations's attributes (recursively).
+
+= Usage
+
+== Basic usage
+@users = User.all
+
+With one collection, all columns are exported with default humanized attributes names for excel columns :
+
+ [@users].to_excel
+
+If you don't want excel header : 
+
+ @users.to_excel headers => false
+
+To restrict attributes : 
+
+ [@users].to_excel(:map => {User => [:age, :id, :name]}) #User is the class of users objects.
+
+
+== Multiples collections of different classes
+
 
