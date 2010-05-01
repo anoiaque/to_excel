@@ -1,4 +1,4 @@
-<h1> Introduction </h1>
+= Introduction 
 I first used the good "arydjmal/to_xls" plugin but it doesn't allow collections of multiples objects from different class and can't export
 associations attributes of a class.
 
