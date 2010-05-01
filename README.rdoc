@@ -17,6 +17,12 @@ exporting associations's attributes (recursively).
 ==== If you don't want excel header : 
 
  @users.to_excel headers => false
+ 
+==== Personalized header
+
+ header = ['User Id', 'User name']
+ [@users].to_excel(:map => { User => [:id,:name], :headers => header)    
+  
 
 ==== To restrict attributes : 
 
@@ -24,6 +30,58 @@ exporting associations's attributes (recursively).
 
 
 == Multiples collections of different classes
+Suppose you have two classes : User and Computer, with Computer has_one :user
+
+ @users = [User.new(:name => 'Dupont', :age => 25)]
+ @computers =[Computer.new(:brand => 'Apple', :portable => true, :user => @users.first)]
+
+==== You can export in the same file users and computers (in this order)
+
+ [@users, @computers].to_excel(:map => { User => [:id,:name], Computer => [:id, :brand,]})
+ 
+==== You can export nested attributes, for example name of user of computer
+In order to export the name column of the user of the computer,  include [:user,:name] in the attribute list of key Computer :
+ 
+ [@users, @computers].to_excel(:map => { User => [:id,:name], Computer => [:id, :brand, [:user, :name]]})
+ 
+
+==== You can export value of a instance method
+=== Example
+Suppose Computer class has an instance method macintosh?
+You can export the column values as if it was an attribute :
+
+[@computers].to_excel(:map => {Computer => [:id, :macintosh?]})
+
+
+==== Controller side
+
+ class UsersController < ....
+
+ ....
+    send_data [@users, @computers].to_excel(:map => { User => [:id,:name], Computer => [:id, :brand,]})
+
+ ....
+ end
+ 
+If you want to use it with respond_to, you may have to include in initializes/mime_types :
+ 
+ Mime::Type.register "application/vnd.ms-excel", :xls
+ 
+ 
+====  Dependencies
+
+No dependency.
+
+==== Install
+
+  sudo gem install to_excel
+  
+
+
+Copyright © 2010 Philippe Cantin, released under the MIT license.
+
+
+
 
 
 
