@@ -53,7 +53,7 @@ You can export the column values as if it was an attribute :
 [@computers].to_excel(:map => {Computer => [:id, :macintosh?]})
 
 
-==== Controller side
+== Controller side
 
  class UsersController < ....
 
