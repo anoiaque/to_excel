@@ -46,7 +46,7 @@ In order to export the name column of the user of the computer,  include [:user,
  
 
 ==== You can export value of a instance method
-=== Example
+
 Suppose Computer class has an instance method macintosh?
 You can export the column values as if it was an attribute :
 
