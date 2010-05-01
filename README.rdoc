@@ -10,19 +10,20 @@ exporting associations's attributes (recursively).
 == Basic usage
 @users = User.all
 
-With one collection, all columns are exported with default humanized attributes names for excel columns :
+==== With one collection. All columns are exported with default humanized attributes names for excel columns :
 
  [@users].to_excel
 
-If you don't want excel header : 
+==== If you don't want excel header : 
 
  @users.to_excel headers => false
 
-To restrict attributes : 
+==== To restrict attributes : 
 
  [@users].to_excel(:map => {User => [:age, :id, :name]}) #User is the class of users objects.
 
 
 == Multiples collections of different classes
+
 
 
